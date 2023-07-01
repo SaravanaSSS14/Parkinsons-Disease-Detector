@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title id="title">PDD - Details</title>
+
+    <link rel="icon" href="../Images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="CSS/style.css">
+
+   
+</head>
+<body>
+    <h1>Patient details</h1>
+    <div class="form-container">
+        <form id="myForm" action="upload.html" method="POST" onsubmit="return validateForm()">
+            <div id="name">
+                <label for="f_name">
+                    First Name
+                </label>
+                <input type="text" name="f_name" required />
+                <br />
+                <label for="l_name">
+                    Last Name
+                </label>
+                <input type="text" name="l_name" />
+            </div>
+
+            <br /><br />
+
+            <div id="sex">
+                <label for="sex">
+                    Gender
+                </label><input type="radio" name="sex" value="Male" required />Male
+                <input type="radio" name="sex" value="Female" required />Female
+                <input type="radio" name="sex" value="Other" required />Other
+            </div>
+
+            <br /><br />
+
+            <div id="age">
+                <label for="age">
+                    Age
+                </label>
+                <input type="number" name="age" min="1" required />
+            </div>
+
+            <br /><br />
+
+             <div id="address">
+                 <label for="address">Address</label>
+                 <textarea style="font-size: 16px; min-height: 24px;" class="auto-resizable" id="address" name="address" placeholder="Enter your address"></textarea>
+             </div>
+
+            <br /><br />
+
+            <div id="phone">
+                <label for="phone" name="phone">
+                    Phone No:
+                </label>
+                <input type="tel" name="phone" required />
+            </div>
+
+            <br /><br />
+
+            <div id="email">
+                <label for="email" name="email">
+                    Mail:
+                </label>
+                <input type="email" name="email" required />
+            </div>
+
+            <br /><br />
+
+            <!--
+                <div id="upload">
+                Upload Test Image Here<br />
+                     <input type="file" name="imageUpload" accept="image/*" />
+                </div>
+            -->
+
+            <br /><br />
+
+            <div id="submit">
+                <button type="submit" name="submit">
+                    <!--onclick="window.location.href = 'upload.html';"-->
+                    <span id="span1">Proceed to upload test images</span>
+                </button>
+            </div>
+
+            <br /><br />
+        </form>
+    </div>
+    <script src="../Javascript/index.js"></script>
+</body>
+</html>
