@@ -1,0 +1,28 @@
+import psycopg2
+
+
+# Database connection configuration
+host = "localhost"
+database = "patient_details"
+user = "postgres"
+password = "your_password"  # Replace with your actual password
+
+if request.method == 'POST':
+    # Retrieve form data
+    email = request.form['email']
+    password = request.form['password']
+
+    # Connect to the PostgreSQL database
+    connection = psycopg2.connect(host=host, database=database, user=user, password=password)
+    cursor = connection.cursor()
+
+    # Insert form data into the table
+    insert_query = "INSERT INTO users (email, password) VALUES (%s,crypt(%s, gen_salt('bf')));"
+    cursor.execute(insert_query,(email,password))
+    connection.commit()
+
+    # Close the database connection
+    cursor.close()
+    connection.close()
+
+    

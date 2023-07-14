@@ -62,22 +62,15 @@ function validateForm() {
     // Perform form validation here
     var isValid = true;
 
-    // First Name validation
-    var firstName = document.getElementById("f_name").value;
-    if (firstName.trim() === "") {
-        alert("Please enter your first name");
-        isValid = false;
-    }
-
-    // Last Name validation
-    var lastName = document.getElementById("l_name").value;
-    if (lastName.trim() === "") {
-        alert("Please enter your last name");
+    // Name validation
+    var Name = document.getElementById("name").value;
+    if (Name.trim() === "") {
+        alert("Please enter your name");
         isValid = false;
     }
 
     // Gender validation
-    var genderInputs = document.querySelectorAll('input[name="sex"]');
+    var genderInputs = document.querySelectorAll('input[name="gender"]');
     var selectedGender = false;
     for (var i = 0; i < genderInputs.length; i++) {
         if (genderInputs[i].checked) {
@@ -97,13 +90,6 @@ function validateForm() {
         isValid = false;
     }
 
-    // Address validation
-    var address = document.getElementById("address").value;
-    if (address.trim() === "") {
-        alert("Please enter your address");
-        isValid = false;
-    }
-
     // Phone validation
     var phone = document.getElementById("phone").value;
     if (!/^\d{10}$/.test(phone)) {
@@ -120,7 +106,7 @@ function validateForm() {
 
     if (isValid) {
         // Form is valid, proceed to the next page
-        window.location.href = 'next-page.html';
+        window.location.href = '../pages/upload.html';
         return false; // Prevent default form submission
     } else {
         // Form is invalid, display error message or perform actions
