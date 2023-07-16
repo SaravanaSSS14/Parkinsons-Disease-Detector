@@ -104,13 +104,9 @@ function validateForm() {
         isValid = false;
     }
 
-    if (isValid) {
-        // Form is valid, proceed to the next page
-        window.location.href = '../pages/upload.html';
-        return false; // Prevent default form submission
-    } else {
-        // Form is invalid, display error message or perform actions
+    if (!isValid) {
+        // Form is invalid, proceed to the next page
         alert('Please fill in all required fields correctly.'); // Example of displaying an error message
         return false; // Prevent default form submission
-    }
+    } 
 }

@@ -14,7 +14,7 @@
         <h1 class="h1">Parkinson's Disease Detector</h1>   
     <div class="form-wrapper">
       <h3>Login</h3>
-      <form action="Pages/details.html" method="POST"> <!-- Action attribute should be replaced with check_db.py for redirections to occur-->
+      <form action="{{ url_for('check_db.details') }}" method="POST">
         <div>
           <label for="login-email">Email:</label>
           <input type="email" id="login-email" name="email" required>
@@ -25,7 +25,7 @@
         </div>
         <button type="submit" class="log-btn">Login</button>
       </form>
-      <p>Don't have an account? <a id="signup-link" href="{{ url_for('signup') }}" >Signup</a></p>
+      <p>Don't have an account? <a id="signup-link" href="/signup" >Signup</a></p>
     </div>
     
     </div>
