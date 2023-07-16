@@ -9,7 +9,7 @@ def signup():
     host = "localhost"
     database = "patient_details"
     user = "postgres"
-    password = "410455"  # Replace with your actual password
+    password = "your_password"  # Replace with your actual password
 
     if request.method == 'POST':
         # Retrieve form data

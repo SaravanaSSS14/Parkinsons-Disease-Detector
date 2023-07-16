@@ -1,7 +1,7 @@
 from flask import Flask , render_template 
-from check_db import check_db
-from submit_details import submit_details
-from sign import sign
+from Python.check_db import check_db
+from Python.submit_details import submit_details
+from Python.sign import sign
 import psycopg2
 
 app = Flask(__name__)
