@@ -33,30 +33,6 @@
         });
         });
 
-    const addressField = document.getElementById('address');
-    addressField.addEventListener('input', function () {
-        const content = this.value;
-        const contentLength = content.length;
-
-        // Calculate the font size based on content length
-        const fontSize = Math.max(16 - Math.floor(contentLength / 10), 12);
-
-        this.style.fontSize = `${fontSize}px`;
-    });
-
-    const textarea = document.getElementById("myTextarea");
-    function handleKeyDown(event) {
-        if (event.key === "Enter" && event.shiftKey) {
-            const textarea = event.target;
-            const start = textarea.selectionStart;
-            const end = textarea.selectionEnd;
-            const value = textarea.value;
-            textarea.value = value.substring(0, start) + "\n" + value.substring(end);
-            textarea.selectionStart = textarea.selectionEnd = start + 1;
-            event.preventDefault();
-        }
-}
-
 //Form Validation
 function validateForm() {
     // Perform form validation here
