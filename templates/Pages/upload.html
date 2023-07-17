@@ -92,7 +92,7 @@
     <div class="upload">
         <h1>Image Upload</h1>
 
-        <form action="/upload" method="post" enctype="multipart/form-data">
+        <form action="/submit_image" method="post" enctype="multipart/form-data">
             <input type="file" name="image" accept="image/*" multiple onchange="showPreview(event)">
             <input type="submit" value="Upload">
         </form>
@@ -101,7 +101,7 @@
     </div>
     <br><br>
     <div class="footer">
-        <p>Go to <a href="details.html">previous</a> page .</p>
+        <p>Go to <a href="/details">previous</a> page .</p>
     </div>
     <script>
         // Set the default preview when the page loads
