@@ -41,6 +41,7 @@
                 return;
             }
 
+            
             var currentFile = selectedFiles[currentImageIndex];
             var reader = new FileReader();
 
@@ -73,9 +74,11 @@
             };
 
             reader.readAsDataURL(currentFile);
+            
         }
 
-        function navigateImages(direction) {
+        
+       function navigateImages(direction) {
             currentImageIndex += direction;
 
             if (currentImageIndex < 0) {
@@ -86,6 +89,7 @@
 
             displayCurrentImage();
         }
+        
     </script>
 </head>
 <body>
