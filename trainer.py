@@ -1,5 +1,7 @@
 ## %%
 # common import
+import pyautogui
+from flask import Blueprint , render_template,request
 import pandas as pd
 import numpy as np
 import time
@@ -547,18 +549,21 @@ k = tester(model = classification_model, dataset = spiral_testing_dataset)
 # %%
 k[0]
 
-img = "image from flask"
+def check():
 
-image_transformation = transforms.Compose([  
-    transforms.Resize((256,256)),
-    transforms.ToTensor(),
-  ])
+    if request.method == 'POST':
+        img = request.form['image']
 
-img = image_transformation(img).to(device)
-# passing to model
-prediction = torch.softmax(classification_model.eval().to(device)(img),dim=1)
+        image_transformation = transforms.Compose([  
+            transforms.Resize((256,256)),
+            transforms.ToTensor(),
+        ])
 
-print(f"prediction : {torch.argmax(prediction)}")
+        img = image_transformation(img).to(device)
+        # passing to model
+        prediction = torch.softmax(classification_model.eval().to(device)(img),dim=1)
+        pyautogui.alert(f"prediction : {torch.argmax(prediction)}")
+        # print(f"prediction : {torch.argmax(prediction)}")
 
 
-# tester(model = classification_model, dataset = ) # for multiple
+        # tester(model = classification_model, dataset = ) # for multiple
