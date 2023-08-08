@@ -1,5 +1,6 @@
 from flask import Blueprint , render_template,request
 import psycopg2
+import trainer
 submit_details = Blueprint("submit_details" , __name__ , static_folder="static" , template_folder="templates")
 
 @submit_details.route("/upload" ,methods=['GET','POST'])
@@ -9,7 +10,7 @@ def upload():
     host = "localhost"
     database = "patient_details"
     user = "postgres"
-    password = "410455"  # Replace with your actual password
+    password = "Saravana$$$14"  # Replace with your actual password
 
 
     if request.method == 'POST':
@@ -33,6 +34,8 @@ def upload():
         cursor.close()
         connection.close()
     return render_template("Pages/upload.html")
+
+
 
 
 
