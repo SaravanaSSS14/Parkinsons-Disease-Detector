@@ -12,7 +12,7 @@ def details():
     host = "localhost"
     database = "patient_details"
     user = "postgres"
-    password = "410455"  # Replace with your actual password
+    password = "Saravana$$$14"  # Replace with your actual password
 
     if request.method == 'POST':
         # Retrieve form data

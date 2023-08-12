@@ -2,13 +2,14 @@ from flask import Flask , render_template
 from Python.check_db import check_db
 from Python.submit_details import submit_details
 from Python.sign import sign
-import trainer
+from Python.submit_image import submit_image
 import psycopg2
 
 app = Flask(__name__, static_folder='static')
 app.register_blueprint(check_db,url_prefix="/details")
 app.register_blueprint(sign,url_prefix="/sign_details")
 app.register_blueprint(submit_details,url_prefix="/upload")
+app.register_blueprint(submit_image,url_prefix="/image")
 
 @app.route("/",methods=['GET','POST'])
 def index():

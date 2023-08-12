@@ -82,7 +82,7 @@ def plot_healthy_unhealthy(root,n):
         axs[i][1].imshow(parkinson_image)
         axs[i][1].set_title(f'parkinson image | size = {parkinson_image.size}')
     
-    plt.show()
+    #plt.show()
 
 # %%
 plot_healthy_unhealthy(spiral_root,4)
@@ -524,9 +524,9 @@ def tester(model = classification_model, dataset = wave_testing_dataset):
         print(f"prediction : {'healthy' if int(pred.item()) == 0 else 'parkinson'} with confidence : {prediction[0][pred.item()].item()*100:.2f} % | ", f"Truth : {'healthy' if int(label.item()) == 0 else 'parkinson'}" )
 
         img = transforms.ToPILImage()(image.squeeze(0).detach().cpu()).convert('RGB')
-        plt.title(f"pred : {'healthy' if int(pred.item()) == 0 else 'parkinson'} | confidence {prediction[0][pred.item()].item():.2f} | original : {'healthy' if int(label.item()) == 0 else 'parkinson'}")
-        plt.imshow(img)
-        plt.show()
+        #plt.title(f"pred : {'healthy' if int(pred.item()) == 0 else 'parkinson'} | confidence {prediction[0][pred.item()].item():.2f} | original : {'healthy' if int(label.item()) == 0 else 'parkinson'}")
+        #plt.imshow(img)
+        #plt.show()
 
         if index > 105:
             break
@@ -549,7 +549,7 @@ k = tester(model = classification_model, dataset = spiral_testing_dataset)
 # %%
 k[0]
 
-def check():
+'''def check():
 
     if request.method == 'POST':
         img = request.form['image']
@@ -564,6 +564,8 @@ def check():
         prediction = torch.softmax(classification_model.eval().to(device)(img),dim=1)
         pyautogui.alert(f"prediction : {torch.argmax(prediction)}")
         # print(f"prediction : {torch.argmax(prediction)}")
+
+    return render_template("Pages/upload.html")'''
 
 
         # tester(model = classification_model, dataset = ) # for multiple
