@@ -1,6 +1,6 @@
 from flask import Blueprint , render_template,request
 import psycopg2
-import trainer
+
 submit_details = Blueprint("submit_details" , __name__ , static_folder="static" , template_folder="templates")
 
 @submit_details.route("/upload" ,methods=['GET','POST'])
