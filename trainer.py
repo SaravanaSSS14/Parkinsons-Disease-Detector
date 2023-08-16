@@ -306,28 +306,28 @@ classification_model = Model1(input_channels = 1, output_channels = 2, arch = ar
 print(F"Total trainable params in classification model is {sum([p.numel() for p in classification_model.parameters() if p.requires_grad])*1e-6:.3f} M")
 
 # %%
-trainer  = Trainer(model = classification_model, 
-                   optimizer = optimizer, 
-                   loss = loss, 
-                   train_dataloader = spiral_train_dataloader, 
-                   test_dataloader = spiral_test_dataloader, 
-                   optimizer_params = optimizer_params, 
-                   name = 'spiral')
+# trainer  = Trainer(model = classification_model, 
+#                    optimizer = optimizer, 
+#                    loss = loss, 
+#                    train_dataloader = spiral_train_dataloader, 
+#                    test_dataloader = spiral_test_dataloader, 
+#                    optimizer_params = optimizer_params, 
+#                    name = 'spiral')
 
-# %%
-# params for training
-epochs = 25
-print_freq = 1
-save_freq = 5
-save_path = './saved_models/spiral/'
+# # %%
+# # params for training
+# epochs = 25
+# print_freq = 1
+# save_freq = 5
+# save_path = './saved_models/spiral/'
 
-history = trainer.train_model(n_epochs = epochs, print_freq = print_freq, save_freq = save_freq, save_path = save_path)
+# history = trainer.train_model(n_epochs = epochs, print_freq = print_freq, save_freq = save_freq, save_path = save_path)
 
 
 # %%
 def tester(model = classification_model, dataset = wave_testing_dataset):
 
-    test_dataloader = DataLoader(dataset, batch_size=1, shuffle = False)
+    test_dataloader = DataLoader(dataset, batch_size=1, shuffle = False) 
 
     # these variables will be used later
     epoch_loss = 0
@@ -382,13 +382,25 @@ def tester(model = classification_model, dataset = wave_testing_dataset):
     return [epoch_metric, epoch_loss, truth, l_pred]
 
 # %%
-k = tester(model = classification_model, dataset = spiral_testing_dataset)
+# k = tester(model = classification_model, dataset = spiral_testing_dataset)
 
 # %%
-print(k[0])
+# print(k[0])
 # Save the entire model including its parameters
 model_path = './classification_model.pth'
 torch.save(classification_model.state_dict(), model_path)
 print(f"Model saved at: {model_path}")
 
+# loading the model
+classification_model.load_state_dict( torch.load('./loading path') ).eval()
+
+# type the path of the image here
+test_image_path = Image.open( input(' give the image path : ') ).convert('RGB')
+test_image = test_transformations(test_image_path).to(device).unsqueeze(0)
+
+# predicting
+prediction = classification_model.to(device).eval()(test_image)
+pred = torch.argmax(prediction,dim=1)
+
+print(f"prediction : {'healthy' if int(pred.item()) == 0 else 'parkinson'} with confidence : {prediction[0][pred.item()].item()*100:.2f} % | " )
 
