@@ -388,19 +388,20 @@ def tester(model = classification_model, dataset = wave_testing_dataset):
 # print(k[0])
 # Save the entire model including its parameters
 model_path = './classification_model.pth'
-torch.save(classification_model.state_dict(), model_path)
-print(f"Model saved at: {model_path}")
-
+# torch.save(classification_model.state_dict(), model_path)
+# print(f"Model saved at: {model_path}")
+# %%
 # loading the model
-classification_model.load_state_dict( torch.load('./loading path') ).eval()
+#classification_model.load_state_dict( torch.load(model_path) )
 
+# %%
 # type the path of the image here
-test_image_path = Image.open( input(' give the image path : ') ).convert('RGB')
-test_image = test_transformations(test_image_path).to(device).unsqueeze(0)
+#test_image_path = Image.open( input('../Input/spiral/testing/parkinson/V14PE03.png') ).convert('RGB')
+#test_image = test_transformations(test_image_path).to(device).unsqueeze(0)
 
 # predicting
-prediction = classification_model.to(device).eval()(test_image)
-pred = torch.argmax(prediction,dim=1)
+#prediction = classification_model.to(device).eval()(test_image)
+#pred = torch.argmax(prediction,dim=1)
 
-print(f"prediction : {'healthy' if int(pred.item()) == 0 else 'parkinson'} with confidence : {prediction[0][pred.item()].item()*100:.2f} % | " )
+# print(f"prediction : {'healthy' if int(pred.item()) == 0 else 'parkinson'} with confidence : {prediction[0][pred.item()].item()*100:.2f} % | " )
 

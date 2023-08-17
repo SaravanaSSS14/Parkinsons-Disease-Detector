@@ -550,3 +550,8 @@ k = tester(model = classification_model, dataset = spiral_testing_dataset)
 
 # %%
 print(k[0])
+
+# %%    
+model_path = './classification_model.pth'
+torch.save(classification_model.state_dict(), model_path)
+print(f"Model saved at: {model_path}")
