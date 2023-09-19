@@ -135,7 +135,8 @@ class Model1(nn.Module):
         h,w = self.h, self.w
 
         for i in range(1, len(arch)):
-            temp = Condensed_Conv(stride = 1, input_channels = arch[i-1], output_channels = arch[i], normalization = nn.BatchNorm2d(arch[i]), activation = nn.LeakyReLU(), res_connect = True, hidden_channels=arch[i-1])
+            temp = Condensed_Conv(stride = 1, input_channels = arch[i-1], output_channels = arch[i], normalization = nn.BatchNorm2d(arch[i]),
+                                   activation = nn.LeakyReLU(), res_connect = True, hidden_channels=arch[i-1])
             mid_layers.append(temp)
 
             # getting the value of channels and height and width to calculate the number of neurons in the output layer
