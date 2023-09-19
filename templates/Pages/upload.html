@@ -12,7 +12,7 @@
     <script>
         var selectedFiles = [];
         var currentImageIndex = 0;
-        var maxFileSize = 1024 * 1024;
+        var maxFileSize = 2048 * 2048;
 
         function showPreview(event) {
             var fileInput = event.target;
@@ -111,5 +111,8 @@
         // Set the default preview when the page loads
         displayCurrentImage();
     </script>
+    {% if message %}
+    <p> {{ message }}</p>
+    {% endif %}
 </body>
 </html>

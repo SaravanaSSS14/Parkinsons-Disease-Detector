@@ -3,9 +3,9 @@ from Python.check_db import check_db
 from Python.submit_details import submit_details
 from Python.sign import sign
 from Python.submit_image import submit_image
-import psycopg2
 
 app = Flask(__name__, static_folder='static')
+app.secret_key = 'pdd_101420$$$'
 app.register_blueprint(check_db,url_prefix="/details")
 app.register_blueprint(sign,url_prefix="/sign_details")
 app.register_blueprint(submit_details,url_prefix="/upload")
