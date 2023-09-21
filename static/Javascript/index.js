@@ -62,8 +62,8 @@ function validateForm() {
 
     // Age validation
     var age = document.getElementById("age").value;
-    if (isNaN(age) || age < 1 || age > 120) {
-        alert("Please enter a valid age between 1 and 120");
+    if (isNaN(age) || age < 20 || age > 90) {
+        alert("Please enter a valid age between 20 and 90");
         isValid = false;
     }
 

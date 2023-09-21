@@ -47,12 +47,23 @@
             <td>{{ row[2] }}</td>
         </tr>
         <tr>
+            <th>Gender</th>
+            <td>{{ row[3] }}</td>
+        </tr>
+        <tr>
             <th>Disease Result</th>
             <td style="background-color: #ff7f50; color: #fff;">{{ row[6] }}</td>
         </tr>
+        <tr>
+            <th>Prediction Confidence </th>
+            <td style="background-color: #ff7f50; color: #fff;">{{ res }}</td>
+        </tr>
         {% endfor %}
     </table>
+    
+    <div class="footer">
+        <p>Go to <a href="/">Login </a> page .</p>
+    </div>
 
-    <p> {{ data[1] }} </p>
 </body>
 </html>

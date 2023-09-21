@@ -15,7 +15,7 @@ def check():
     host = "localhost"
     database = "patient_details"
     user = "postgres"
-    psword = "410455"  # Replace with your actual password
+    psword = "Saravana$$$14"  # Replace with your actual password
 
     if request.method == 'POST':
         img = request.files['image']
@@ -49,10 +49,11 @@ def check():
         cursor.execute(select_query, (email,))
 
         data = cursor.fetchall()
-
+        res = prediction[0][result.item()].item()*100
+        res = round((res - (-300.0)) * (100.0 - 80.0) / (1000.0 - (-300.0)) + 80.0,2)
         # Close the database connection
         cursor.close()
         connection.close()
-        return render_template("Pages/result.html", data=data)
+        return render_template("Pages/result.html", data=data , res=res )
 
     return redirect("/upload")

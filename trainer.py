@@ -15,14 +15,9 @@ import seaborn as sns
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-spiral_root = 'C:/Users/nullp/Downloads/Summer_project/spiral'
-wave_root = 'C:/Users/nullp/Downloads/Summer_project/wave'
-
-spiral_train = 'C:/Users/nullp/Downloads/Summer_project/spiral/training'
-wave_train = 'C:/Users/nullp/Downloads/Summer_project/wave/training'
-
-spiral_test = 'C:/Users/nullp/Downloads/Summer_project/spiral/testing'
-wave_test  = 'C:/Users/nullp/Downloads/Summer_project/wave/testing'
+spiral_root = 'D:/Admin/Works/Summer_2023/spiral'
+spiral_train = 'D:/Admin/Works/Summer_2023/spiral/training'
+spiral_test = 'D:/Admin/Works/Summer_2023/spiral/testing'
 
 size = (256,256)
 
@@ -40,10 +35,8 @@ test_transformations = transforms.Compose([
 ])
 
 spiral_training_dataset = ImageFolder( root = spiral_train, transform = train_transformations, )
-wave_training_dataset = ImageFolder( root = wave_train, transform = train_transformations, )
 
 spiral_testing_dataset = ImageFolder( root = spiral_test, transform = test_transformations, )
-wave_testing_dataset = ImageFolder( root = wave_test, transform = test_transformations, )
 
 class Separable_Conv(nn.Module):
 
@@ -251,7 +244,7 @@ class Trainer():
             epoch_loss = epoch_loss/len(truth)
 
             return epoch_metric, epoch_loss
-    def train_model(self, n_epochs, print_freq, save_freq, save_path ):
+    def train_model(self, n_epochs, print_freq ):
         
         # to store the losses and its performance
         train_loss_list, test_loss_list = [],[]
@@ -281,7 +274,7 @@ class Trainer():
             #     os.makedirs(save_path, exist_ok=True)
             #     torch.save(self.model.state_dict(), os.path.join(save_path,f"{self.name}_{e}.pt") )
         print(f"\nModel has been trained with {n_epochs} images\n ")
-        print(f"Train loss\n{train_loss_list}\n Test loss\n{test_loss_list}\n Train accuracy\n{train_metric_list}\nTest accuracy\n {test_metric_list}\n")
+        # print(f"Train loss\n{train_loss_list}\n Test loss\n{test_loss_list}\n Train accuracy\n{train_metric_list}\nTest accuracy\n {test_metric_list}\n")
         return [train_loss_list, test_loss_list, train_metric_list, test_metric_list]
 
 lr = 5e-5
@@ -296,10 +289,6 @@ loss = nn.CrossEntropyLoss()
 spiral_train_dataloader = DataLoader(spiral_training_dataset, batch_size = batch_size, shuffle = True, drop_last = False)
 spiral_test_dataloader =  DataLoader(spiral_testing_dataset, batch_size = batch_size, shuffle = True, drop_last = False)
 
-# wave dataset
-wave_train_dataloader = DataLoader(wave_training_dataset, batch_size = batch_size, shuffle = True, drop_last = False)
-wave_test_dataloader =  DataLoader(wave_testing_dataset, batch_size = batch_size, shuffle = True, drop_last = False)
-
 # %%
 arch0 = [32,32,64,64,64]
 classification_model = Model1(input_channels = 1, output_channels = 2, arch = arch0, size = (256,256) ).to(device)
@@ -307,26 +296,26 @@ classification_model = Model1(input_channels = 1, output_channels = 2, arch = ar
 print(F"Total trainable params in classification model is {sum([p.numel() for p in classification_model.parameters() if p.requires_grad])*1e-6:.3f} M")
 
 # %%
-# trainer  = Trainer(model = classification_model, 
-#                    optimizer = optimizer, 
-#                    loss = loss, 
-#                    train_dataloader = spiral_train_dataloader, 
-#                    test_dataloader = spiral_test_dataloader, 
-#                    optimizer_params = optimizer_params, 
-#                    name = 'spiral')
+trainer  = Trainer(model = classification_model, 
+                   optimizer = optimizer, 
+                   loss = loss, 
+                   train_dataloader = spiral_train_dataloader, 
+                   test_dataloader = spiral_test_dataloader, 
+                   optimizer_params = optimizer_params, 
+                   name = 'spiral')
 
 # # %%
 # # params for training
-# epochs = 25
+# epochs = 32
 # print_freq = 1
 # save_freq = 5
 # save_path = './saved_models/spiral/'
 
-# history = trainer.train_model(n_epochs = epochs, print_freq = print_freq, save_freq = save_freq, save_path = save_path)
+# history = trainer.train_model(n_epochs = epochs, print_freq = print_freq)
 
 
 # %%
-def tester(model = classification_model, dataset = wave_testing_dataset):
+def tester(model = classification_model, dataset = spiral_testing_dataset):
 
     test_dataloader = DataLoader(dataset, batch_size=1, shuffle = False) 
 
@@ -364,7 +353,7 @@ def tester(model = classification_model, dataset = wave_testing_dataset):
         truth.append(label.detach().cpu().numpy())
         l_pred.append(pred.detach().cpu().numpy())
 
-        print(f"prediction : {'healthy' if int(pred.item()) == 0 else 'parkinson'} with confidence : {prediction[0][pred.item()].item()*100:.2f} % | ", f"Truth : {'healthy' if int(label.item()) == 0 else 'parkinson'}" )
+        # print(f"prediction : {'healthy' if int(pred.item()) == 0 else 'parkinson'} with confidence : {prediction[0][pred.item()].item()*100:.2f} % | ", f"Truth : {'healthy' if int(label.item()) == 0 else 'parkinson'}" )
 
         img = transforms.ToPILImage()(image.squeeze(0).detach().cpu()).convert('RGB')
 

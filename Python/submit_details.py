@@ -10,7 +10,7 @@ def upload():
     host = "localhost"
     database = "patient_details"
     user = "postgres"
-    psword = "410455"  # Replace with your actual password
+    psword = "Saravana$$$14"  # Replace with your actual password
 
 
     if request.method == 'POST':
