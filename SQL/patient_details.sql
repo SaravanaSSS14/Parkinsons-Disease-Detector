@@ -4,5 +4,6 @@ CREATE TABLE patient_details (
     age INTEGER NOT NULL,
     gender VARCHAR(10) NOT NULL,
     phone VARCHAR(20) NOT NULL,
-    email VARCHAR(100) NOT NULL
+    email VARCHAR(100) NOT NULL,
+    result VARCHAR(10)
 );

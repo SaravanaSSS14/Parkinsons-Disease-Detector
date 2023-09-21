@@ -9,7 +9,7 @@ def signup():
     host = "localhost"
     database = "patient_details"
     user = "postgres"
-    password = "Saravana$$$14"  # Replace with your actual password
+    pssword = "410455"  # Replace with your actual password
 
     if request.method == 'POST':
         # Retrieve form data
@@ -17,7 +17,7 @@ def signup():
         psword = request.form['password']
 
         # Connect to the PostgreSQL database
-        connection = psycopg2.connect(host=host, database=database, user=user, password=password)
+        connection = psycopg2.connect(host=host, database=database, user=user, password=pssword)
         cursor = connection.cursor()
 
         # Insert form data into the table
