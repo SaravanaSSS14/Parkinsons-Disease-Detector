@@ -1,8 +1,7 @@
-from flask import Blueprint , render_template,request
+from flask import Blueprint , render_template , request
 import pandas as pd
 import numpy as np
 import os
-import pickle
 from tqdm import tqdm
 from sklearn.metrics import accuracy_score, f1_score, confusion_matrix
 from PIL import Image
@@ -12,6 +11,7 @@ from torch.utils.data import Dataset, DataLoader
 import torchvision.transforms as transforms
 from torchvision.datasets import ImageFolder
 from torchvision.transforms import transforms
+import seaborn as sns
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -406,3 +406,4 @@ model_path = './classification_model.pth'
 
 # print(f"prediction : {'healthy' if int(pred.item()) == 0 else 'parkinson'} with confidence : {prediction[0][pred.item()].item()*100:.2f} % | " )
 
+# %%

@@ -23,7 +23,7 @@ def check():
         result = torch.argmax(prediction,dim=1)
         #image = Image.open(img).convert("L")
         if result.item() == 1:
-            message = " Parkinson's Positive "
+            message = f" Parkinson's Positive . confidence : {abs(prediction[0][result.item()].item()*100):.2f} % | "
             return render_template("Pages/upload.html", message=message)
         elif result.item() == 0:
             message = " Parkinson's Negative"
