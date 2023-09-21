@@ -99,6 +99,7 @@
         <form action="{{ url_for('submit_image.check') }}" method="post" enctype="multipart/form-data">
             <input type="file" name="image" accept="image/*" multiple onchange="showPreview(event)">
             <input type="submit" value="Upload">
+            <input type="hidden" name="email" value="{{ email }}">
         </form>
 
     <div id="preview-container"></div>
@@ -111,8 +112,5 @@
         // Set the default preview when the page loads
         displayCurrentImage();
     </script>
-    {% if message %}
-    <p> {{ message }}</p>
-    {% endif %}
 </body>
 </html>

@@ -15,14 +15,14 @@ from torchvision.transforms import transforms
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-spiral_root = 'D:/Admin/Works/Summer_2023/spiral'
-wave_root = 'D:/Admin/Works/Summer_2023/wave'
+spiral_root = 'C:/Users/nullp/Downloads/Summer_project/spiral'
+wave_root = 'C:/Users/nullp/Downloads/Summer_project/wave'
 
-spiral_train = 'D:/Admin/Works/Summer_2023/spiral/training'
-wave_train = 'D:/Admin/Works/Summer_2023/wave/training'
+spiral_train = 'C:/Users/nullp/Downloads/Summer_project/spiral/training'
+wave_train = 'C:/Users/nullp/Downloads/Summer_project/wave/training'
 
-spiral_test = 'D:/Admin/Works/Summer_2023/spiral/testing'
-wave_test  = 'D:/Admin/Works/Summer_2023/wave/testing'
+spiral_test = 'C:/Users/nullp/Downloads/Summer_project/spiral/testing'
+wave_test  = 'C:/Users/nullp/Downloads/Summer_project/wave/testing'
 
 size = (256,256)
 
