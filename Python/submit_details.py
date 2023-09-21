@@ -10,7 +10,7 @@ def upload():
     host = "localhost"
     database = "patient_details"
     user = "postgres"
-    password = "Saravana$$$14"  # Replace with your actual password
+    psword = "410455"  # Replace with your actual password
 
 
     if request.method == 'POST':
@@ -22,7 +22,7 @@ def upload():
         email = request.form['email']
 
         # Connect to the PostgreSQL database
-        connection = psycopg2.connect(host=host, database=database, user=user, password=password)
+        connection = psycopg2.connect(host=host, database=database, user=user, password=psword)
         cursor = connection.cursor()
 
         # Insert form data into the table, with patient_id as a serial type (auto-generated)
@@ -33,7 +33,7 @@ def upload():
         # Close the database connection
         cursor.close()
         connection.close()
-    return render_template("Pages/upload.html")
+    return render_template("Pages/upload.html" , email = email )
 
 
 
